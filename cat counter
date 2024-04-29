@@ -1,0 +1,154 @@
+# ***************************************************************
+# Author: Bree Semanie
+# Lab: 2
+# Date: 4/15/24
+# Description: Example: The purpose of this program
+# is to determine the daily amount calories that your cat needs
+# when being fed once a day based on their individual needs.
+# The calculation is made by multiplying a cat's age
+# by the constant of 22 calories per pound.
+# This number is then reduced according to
+# the age of the cat multiplied by a factor of ten.
+# It's important to remember all cats have different needs!
+#     For the sake of this exercise, I have adjusted
+#     the calories per pound amount to compensate for
+#     including age as a variable.
+#
+#
+# Sample:
+#
+# "Welcome to the Kitty Calorie Calculator!
+# Please provide the following information about your cat.
+#
+# Your cat's name: Enzo
+#
+# Enter your cat's weight in pounds up to 2 decimals: 10
+#
+# Enter your cat's age in years: 2
+#
+# Your cat Enzo needs approximately 200 calories per day.
+#
+# Thank you for choosing the Kitty Calorie Calculator!
+# May your cats stay well fed!"
+#
+#
+# Input: Name of cat, Cat weight, Cat age
+# Output: Recommended daily calorie count
+# Sources: Lab 2 specifications, Cat statistics (https://tinyurl.com/mue545kf)
+#
+# Part 2 (Lab3) - Update Code for use in a main() function
+# Date: 4/21/24
+# ***************************************************************
+
+# This function defines the program. The first four lines
+# establish the necessary variables to calculate
+# the final recommended calorie count according to
+# the user input data.
+# Variables:
+
+cat_name = ""
+cat_category = ""
+cat_weight = 0.0
+cat_age = 0
+age_adj = 0
+calories_per_pound = 22
+final_total = 0
+
+def main():
+    # This function call is to initiate the program to
+    # print a welcome message.
+    print_intro()
+
+    # Inputs - These functions prompt the user for
+    # the necessary input data respectively.
+    cat_name = get_cat_name()
+    cat_weight = get_cat_weight()
+    age_adj = get_cat_age_adj()
+    cat_category = eval_cat_age(cat_age)
+    # Calculation - These functions calculate the
+    # recommended calories according to the provided user input.
+    # The calculation is defined as the cat's weight
+    # multiplied by a constant of 22, which is the
+    # calories per pound that the average cat needs
+    # in order to be properly nourished.
+    # The final calorie count is then adjusted according
+    # to the provided age of the cat.
+    calories_needed = cat_weight * 22
+    final_total = calories_needed - age_adj
+    eval_cat_age(cat_age)
+    # Outputs - This function concludes the program by
+    # printing a message displaying the end result.
+
+    print_conclusion(cat_category, cat_name, final_total)
+def print_intro():
+    """
+    Print introduction to Kitty Calorie Calculator
+    :return: None
+    """
+    print("\nWelcome to Kitty Calorie Calculator!"
+          "\nPlease provide the following "
+          "information about your cat.")
+
+
+def get_cat_name():
+    """
+    Prompts the user to provide their cat's name.
+    :return: name
+    """
+    name = ""
+    name = input("\nYour cat's name:")
+    return name
+
+def get_cat_weight():
+    """
+    Prompts the user to provide their cat's weight.
+    :return: integer of cat's weight
+    """
+    weight = 0.00
+    weight = float(input("\nEnter your cat's weight in lbs "
+                         "up to 2 decimals: "))
+    return weight
+def get_cat_age_adj():
+    """
+    Prompts the user to provide their cat's age
+    and modifies it for calculation later.
+    :return: integer of the cat's age modified
+    """
+    age_adj = 0
+    cat_age = int(input("\nYour cat's age:"))
+    age_adj = cat_age * 10
+    return age_adj
+
+def eval_cat_age(cat_age):
+    cat_category = ""
+    if cat_age >= 8:
+        cat_category = "elderly cat"
+    elif cat_age >= 3:
+        cat_category = "adult cat"
+    else:
+        cat_category = "kitten"
+    return cat_category
+
+def feeding_count(cat_age):
+    feed_number = ""
+    if cat_age > 5:
+        feed_number = "twice a day."
+    else:
+        feed_number = "once a day"
+
+
+def print_conclusion(cat_category, cat_name, final_total):
+    """
+    Prints a message with the final calculation for the user.
+    :return:
+    """
+    print("\nYour", cat_category, cat_name, "needs approximately",
+            format(final_total, ".0f"), "calories per day. They should"
+                                        "be fed", feed_number,)
+                                  "\nThank you for choosing the "
+                                      "Kitty Calorie Calculator!"
+                                  "\nMay your cats stay well fed!")
+
+# This call initiates the main function to run.
+main()
+# End program
